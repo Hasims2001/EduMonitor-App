@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduMonitor App</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif !important;
+        }
+        #head-wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+      
+        .btn{
+            padding: .5rem 1rem;
+            border: none;
+            color: #fff;
+            border-radius: .3rem;
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif ;
+            background: #000;
+        }
+     
+        #moniter-wrapper{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #label-container{
+            width: inherit;
+            color: #fff;
+            text-align: center;
+            font-size: larger;
+            padding: .5rem 1rem;
+        }
+
+
+           /* toast */
+      #snackbar, #instruction{
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -150px;
+        background-color: red;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 16px;
+        font-size: larger;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 30px;
+      }
+      #instruction{
+        background-color: rgb(0, 73, 198);
+       width: 100%;
+       left: 10%;
+
+
+      }
+      #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      }
+      #instruction.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s;
+        animation: fadein 0.5s;
+      }
+
+      @-webkit-keyframes fadein {
+        from {
+          bottom: 0;
+          opacity: 0;
+        }
+        to {
+          bottom: 30px;
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadein {
+        from {
+          bottom: 0;
+          opacity: 0;
+        }
+        to {
+          bottom: 30px;
+          opacity: 1;
+        }
+      }
+
+      @-webkit-keyframes fadeout {
+        from {
+          bottom: 30px;
+          opacity: 1;
+        }
+        to {
+          bottom: 0;
+          opacity: 0;
+        }
+      }
+
+      @keyframes fadeout {
+        from {
+          bottom: 30px;
+          opacity: 1;
+        }
+        to {
+          bottom: 0;
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="head-wrapper">
+      <h1>EduMonitor App</h1>
+      <nav>
+        <button class="btn">Login</button>
+        <button class="btn">Register</button>
+      </nav>
+    </div>
+    <div id="moniter-wrapper">
+      <button type="button" class="btn" onclick="beforeStart()">Start Test</button>
+      <br>
+      <div><canvas id="canvas"></canvas></div>
+      <div id="label-container"></div>
+    </div>
+    <div id="snackbar">..</div>
+    <div id="instruction">
+      <h1>Important Instruction</h1>
+      <p>1. Please make sure your mic & webcam is working perfect.</p>
+      <p>2. The only one warning will give you if you are looking outside of the screen. second time the test will be automatically ended.</p>
+      <p>3. If someone person is present in screen, they test will be ended</p>
+      <p>4. If you are not present in screen then test will be ended within 20 seconds!</p>
+      <br>
+      <p>All the best!</p>
+      <button class="btn" onclick="cancelBox()">Cancel</button>
+      <button class="btn" onclick="startTest()">Start</button>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+  <script src="./scripts/index.js"></script>
+</html>
